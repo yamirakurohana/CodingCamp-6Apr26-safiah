@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Forest Focus Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero card">
+      <div class="hero-copy">
+        <p class="eyebrow" id="heroEyebrow">Forest Focus</p>
+        <h1 id="greeting">Good day</h1>
+        <p id="dailyMotivation" class="hero-text">One small step today still moves you forward.</p>
+      </div>
+
+      <div class="hero-image-wrap">
+        <img
+          class="hero-image"
+          src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80"
+          alt="Misty forest with tall green trees"
+        >
+      </div>
+      <label class="currency-picker">
+        <span id="languageLabel">Language</span>
+        <select id="currencySelect" name="currencySelect" aria-label="Select language">
+        <option value="id">Bahasa Indonesia</option>
+        <option value="ja">Japanese</option>
+        <option value="en">English</option>
+        <option value="ru">Russian</option>
+        <option value="ko">Korean</option>
+        <option value="zh">Chinese</option>
+      </select>
+      </label>
+      <div class="hero-side">
+        <div class="clock-panel">
+          <p id="currentDate" class="date-text">Loading date...</p>
+          <p id="currentTime" class="time-text">00:00:00</p>
+        </div>
+
+        <div class="name-panel">
+          <label for="nameInput" id="nameLabel">Your name</label>
+          <div class="inline-form">
+            <input id="nameInput" type="text" maxlength="30" placeholder="Enter your name">
+            <button id="saveNameBtn" type="button">Save</button>
+          </div>
+          <div class="name-meta">
+            <span id="nameInitials" class="name-badge">--</span>
+            <p id="nameHint" class="name-hint">Save your name to enable personal mode.</p>
+          </div>
+          <p id="nameMessage" class="helper-text" aria-live="polite"></p>
+        </div>
+
+        <div class="theme-panel">
+          <label for="themeSelect" id="themeLabel">Theme</label>
+          <select id="themeSelect" class="theme-select" aria-label="Choose dashboard theme">
+            <option value="default" id="themeOptionDefault">Default</option>
+            <option value="ocean" id="themeOptionOcean">Ocean</option>
+            <option value="mountain" id="themeOptionMountain">Mountain</option>
+            <option value="forest" id="themeOptionForest">Forest</option>
+            <option value="planet" id="themeOptionPlanet">Planet</option>
+            <option value="cloud" id="themeOptionCloud">Cloud</option>
+          </select>
+          <button id="modeToggle" class="ghost-button" type="button" aria-label="Toggle light and dark mode">
+            Mode: Light
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="card timer-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="timerEyebrow">Focus Timer</p>
+          </div>
+        </div>
+
+        <div class="timer-display" id="timerDisplay">25:00</div>
+        <div class="timer-actions">
+          <button id="startTimerBtn" type="button">Start</button>
+          <button id="stopTimerBtn" type="button" class="secondary-button">Stop</button>
+          <button id="resetTimerBtn" type="button" class="secondary-button">Reset</button>
+        </div>
+      </section>
+
+      <section class="card todo-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="todoEyebrow">To-Do List</p>
+            <h2 id="todoTitle">Today's Tasks</h2>
+          </div>
+          <span id="taskCount" class="pill">0 tasks</span>
+        </div>
+
+        <form id="taskForm" class="stack-form">
+          <label for="taskInput" id="taskLabel">Add a task</label>
+          <div class="inline-form">
+            <input id="taskInput" type="text" maxlength="120" placeholder="Write your next task">
+            <button id="taskSubmitBtn" type="submit">Add</button>
+          </div>
+          <p id="taskMessage" class="helper-text" aria-live="polite"></p>
+        </form>
+
+        <ul id="taskList" class="item-list" aria-live="polite"></ul>
+      </section>
+
+      <section class="card links-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="linksEyebrow">Quick Links</p>
+            <h2 id="linksTitle">Favorite Sites</h2>
+          </div>
+        </div>
+
+        <form id="linkForm" class="stack-form">
+          <label for="linkNameInput" id="linkLabel">Add a link</label>
+          <div class="dual-input">
+            <input id="linkNameInput" type="text" maxlength="40" placeholder="Label">
+            <input id="linkUrlInput" type="url" maxlength="200" placeholder="https://example.com">
+          </div>
+          <button id="linkSubmitBtn" type="submit">Save link</button>
+          <p id="linkMessage" class="helper-text" aria-live="polite"></p>
+        </form>
+
+        <div id="quickLinks" class="links-grid"></div>
+      </section>
+
+      <section class="card weather-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="weatherEyebrow">Weather</p>
+            <h2 id="weatherTitle">Local Forecast</h2>
+          </div>
+          <button id="refreshWeatherBtn" type="button" class="secondary-button">Refresh</button>
+        </div>
+
+        <div class="weather-overview">
+          <div class="weather-main">
+            <span id="weatherIcon" class="weather-icon" aria-hidden="true">..</span>
+            <div>
+              <p id="weatherTemp" class="weather-temp">--°C</p>
+              <p id="weatherCondition" class="weather-condition">Waiting for location...</p>
+            </div>
+          </div>
+
+          <div class="weather-location-wrap">
+            <p id="weatherLocationLabel" class="weather-location-label">Location</p>
+            <p id="weatherLocation" class="weather-location">Detecting your area...</p>
+          </div>
+        </div>
+
+        <div class="weather-stats">
+          <div class="weather-stat">
+            <span id="weatherHumidityLabel" class="weather-stat-label">Humidity</span>
+            <strong id="weatherHumidity">--%</strong>
+          </div>
+          <div class="weather-stat">
+            <span id="weatherWindLabel" class="weather-stat-label">Wind</span>
+            <strong id="weatherWind">-- km/h</strong>
+          </div>
+          <div class="weather-stat">
+            <span id="weatherCoordsLabel" class="weather-stat-label">Coordinates</span>
+            <strong id="weatherCoords">--, --</strong>
+          </div>
+        </div>
+
+        <p id="weatherMessage" class="helper-text" aria-live="polite">Allow location access to see weather near you.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
